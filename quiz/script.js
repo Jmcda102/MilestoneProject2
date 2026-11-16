@@ -158,7 +158,37 @@ function gradeQuiz(event) {
   resultsBox.classList.remove("hidden");
   resultsBox.scrollIntoView({ behavior: "smooth" });
 }
+// Give the user 10 minutes from when the page loads.
+const quizDuration = 10 * 60;
+const quizStartTime = Date.now();
+const quizEndTime = quizStartTime + quizDuration * 1000;
 
+const timerDisplay = document.getElementById("time-left");
+const timerMessage = document.getElementById("timer-message");
+
+// Refresh the countdown every second.
+const countdown = setInterval(updateTimer, 1000);
+updateTimer();
+
+function updateTimer() {
+  const secondsLeft = Math.max(
+    0,
+    Math.ceil((quizEndTime - Date.now()) / 1000)
+  );
+
+  const minutes = Math.floor(secondsLeft / 60);
+  const seconds = String(secondsLeft % 60).padStart(2, "0");
+
+  timerDisplay.textContent = `${minutes}:${seconds}`;
+
+  // Stop the countdown at zero.
+  if (secondsLeft === 0) {
+    clearInterval(countdown);
+    timerMessage.textContent = "Time is up!";
+
+    // Your quiz grading function should be called here.
+  }
+}
 
 // ===== 7. Handle the Retake button (reset the quiz) =====
 function resetQuiz() {
