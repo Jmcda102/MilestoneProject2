@@ -290,3 +290,16 @@ main {
 .footer-bottom p {
   margin: 0;
 }
+#quiz-timer {
+  padding: 12px;
+  border: 2px solid #234b70;
+  border-radius: 6px;
+  background-color: #eef5fb;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#timer-message {
+  color: #a12020;
+  font-weight: bold;
+}
